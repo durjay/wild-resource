@@ -1,0 +1,96 @@
+//Check if an expression is balanced
+//I Was asked in an interview on telephone coding round using colabedit. Copied it as is.
+//The original version is here
+//http://collabedit.com/u9nwv
+
+// "(())" => 1
+// "(((()" => 0
+// ")(" => 0
+
+struct node
+{
+  char data;
+  struct node* next;
+}
+
+//Function to push into the stack
+void push(struct node** ref, int new_data);
+
+//Pop up
+int pop( struct node** ref);
+
+
+
+bool IsMatching(char ch1, char ch2);
+
+void push(struct node** ref, int new_data)
+{
+  //allocate memory
+  struct node* new_node= (struct node*)malloc(sizeof(struct node));
+  if(new_node ==NULL)
+  {
+    //error
+  }
+  new_node->data = new_data;
+  new_node-> next =(*ref);
+  
+  *ref = new_node;
+
+}
+
+//pop
+
+int pop( struct node** ref)
+{
+  struct node* temp;
+  temp = *ref;
+  char s= temp->data;
+  *ref = temp->next;
+  free(temp);
+  return s;
+}
+bool IsMatching(char ch1, char ch2)
+{
+  bool ret = false;
+  if((ch1 == '(') && (ch2 == ')')
+  {
+    ret = true;
+  }
+  
+  return ret;
+}
+
+int isBalanced(const char *s)
+{
+  struct node* stack=NULL;
+  while(*s)
+  {
+      if(*s == '(')
+      {
+        push(&stack, *s)
+      }
+      if(*s == ')')
+      {
+        if(stack == NULL)
+        {
+          return 0;
+        }
+        else
+        {
+          //pop the element
+          char lastEelm = pop(&stack); 
+          if(!IsMatching(lastElem, *s)
+          {
+            return 0;
+          }
+          
+        }
+        
+      }
+      s++;
+  }
+  
+    
+  
+
+}
